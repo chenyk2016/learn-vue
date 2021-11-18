@@ -46,7 +46,9 @@ export function proxy (target: Object, sourceKey: string, key: string) {
   Object.defineProperty(target, key, sharedPropertyDefinition)
 }
 
+// learn.data.1 initState
 export function initState (vm: Component) {
+  // 组件状态的初始化
   vm._watchers = []
   const opts = vm.$options
   if (opts.props) initProps(vm, opts.props)
@@ -110,6 +112,7 @@ function initProps (vm: Component, propsOptions: Object) {
   toggleObserving(true)
 }
 
+// learn.data.1.1 initData
 function initData (vm: Component) {
   let data = vm.$options.data
   data = vm._data = typeof data === 'function'

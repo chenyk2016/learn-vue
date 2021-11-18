@@ -156,12 +156,14 @@ function callActivatedHooks (queue) {
   }
 }
 
+// learn.data.4.update.queueWatcher
 /**
  * Push a watcher into the watcher queue.
  * Jobs with duplicate IDs will be skipped unless it's
  * pushed when the queue is being flushed.
  */
 export function queueWatcher (watcher: Watcher) {
+  // debugger
   const id = watcher.id
   if (has[id] == null) {
     has[id] = true
@@ -184,6 +186,8 @@ export function queueWatcher (watcher: Watcher) {
         flushSchedulerQueue()
         return
       }
+      // learn.data.4.queueWatcher.nextTick
+      // 用任务队列来处理
       nextTick(flushSchedulerQueue)
     }
   }

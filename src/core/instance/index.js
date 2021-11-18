@@ -6,6 +6,8 @@ import { lifecycleMixin } from './lifecycle'
 import { warn } from '../util/index'
 
 function Vue (options) {
+  console.log('do vue');
+
   if (process.env.NODE_ENV !== 'production' &&
     !(this instanceof Vue)
   ) {

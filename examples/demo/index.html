@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js markdown editor example</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/marked@0.3.6"></script>
+    <script src="https://unpkg.com/lodash@4.16.0"></script>
+    <!-- Delete ".min" for console warnings in development -->
+    <script src="../../dist/vue.js"></script>
+  </head>
+  <body>
+
+    <div id="editor">
+
+      <div>
+        <p>
+          <button @click="update">点击更改数据-view不变化</button>
+        </p>
+        <p>
+          <button @click="btnClick">点击更改数据-view不变化</button>
+        </p>
+      </div>
+      <div>
+        结果{{ input }}
+      </div>
+    </div>
+
+    <script>
+      new Vue({
+        el: '#editor',
+        data: {
+          unUsedValue: 1,
+          input: 'a',
+        },
+        computed: {
+        },
+        methods: {
+          update() {
+            this.input = this.input + '1'
+            this.input = this.input + '2'
+          },
+          btnClick() {
+            this.unUsedValue ++
+            console.log(this.unUsedValue);
+          }
+        },
+        beforeUpdate() {
+          console.log('beforeUpdate');
+        },
+        updated() {
+          console.log('updated');
+        },
+      })
+    </script>
+
+  </body>
+</html>

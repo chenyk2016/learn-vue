@@ -158,6 +158,7 @@ export default class Watcher {
     this.newDeps.length = 0
   }
 
+  // learn.data.4.watch.update dep调用
   /**
    * Subscriber interface.
    * Will be called when a dependency changes.

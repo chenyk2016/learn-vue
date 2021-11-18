@@ -24,10 +24,12 @@ const arrayKeys = Object.getOwnPropertyNames(arrayMethods)
  */
 export let shouldObserve: boolean = true
 
+// TODO toggleObserving 有什么作用
 export function toggleObserving (value: boolean) {
   shouldObserve = value
 }
 
+// learn.data.2.3 Observer
 /**
  * Observer class that is attached to each observed
  * object. Once attached, the observer converts the target
@@ -45,6 +47,7 @@ export class Observer {
     this.vmCount = 0
     def(value, '__ob__', this)
     if (Array.isArray(value)) {
+      // can we use __proto__?
       if (hasProto) {
         protoAugment(value, arrayMethods)
       } else {
@@ -102,12 +105,14 @@ function copyAugment (target: Object, src: Object, keys: Array<string>) {
   }
 }
 
+// learn.data.2 observe
 /**
  * Attempt to create an observer instance for a value,
  * returns the new observer if successfully observed,
  * or the existing observer if the value already has one.
  */
 export function observe (value: any, asRootData: ?boolean): Observer | void {
+  console.log('observe', value, asRootData)
   if (!isObject(value) || value instanceof VNode) {
     return
   }
@@ -121,6 +126,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
     Object.isExtensible(value) &&
     !value._isVue
   ) {
+    // learn.data.2.2 observe 在这里给data加东西
     ob = new Observer(value)
   }
   if (asRootData && ob) {
@@ -129,6 +135,7 @@ export function observe (value: any, asRootData: ?boolean): Observer | void {
   return ob
 }
 
+// learn.data.3 defineReactive
 /**
  * Define a reactive property on an Object.
  */
@@ -158,6 +165,9 @@ export function defineReactive (
     enumerable: true,
     configurable: true,
     get: function reactiveGetter () {
+      console.log('get', key);
+      // learn.data.3.1 defineReactive.getter
+      // render 会触发data.getter, 此时会Dep.target写入dep中
       const value = getter ? getter.call(obj) : val
       if (Dep.target) {
         dep.depend()
@@ -171,6 +181,8 @@ export function defineReactive (
       return value
     },
     set: function reactiveSetter (newVal) {
+      console.log('set');
+      // learn.data.3.2 defineReactive.setter
       const value = getter ? getter.call(obj) : val
       /* eslint-disable no-self-compare */
       if (newVal === value || (newVal !== newVal && value !== value)) {

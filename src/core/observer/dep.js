@@ -28,12 +28,15 @@ export default class Dep {
     remove(this.subs, sub)
   }
 
+  // data get 调用
   depend () {
     if (Dep.target) {
       Dep.target.addDep(this)
     }
   }
 
+  // data set 调用
+  // learn.data.3.2 notify
   notify () {
     // stabilize the subscriber list first
     const subs = this.subs.slice()

@@ -32,6 +32,10 @@ function flushCallbacks () {
 // or even between bubbling of the same event (#6566).
 let timerFunc
 
+// learn.data.update.timerFunc
+
+// nextTick 的回掉
+
 // The nextTick behavior leverages the microtask queue, which can be accessed
 // via either native Promise.then or MutationObserver.
 // MutationObserver has wider support, however it is seriously bugged in
@@ -84,6 +88,7 @@ if (typeof Promise !== 'undefined' && isNative(Promise)) {
   }
 }
 
+// learn.data.5.nextTick
 export function nextTick (cb?: Function, ctx?: Object) {
   let _resolve
   callbacks.push(() => {
