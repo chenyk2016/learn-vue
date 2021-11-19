@@ -15,6 +15,8 @@ let uid = 0
 export function initMixin (Vue: Class<Component>) {
   // Learn.1 VUE初始化
   Vue.prototype._init = function (options?: Object) {
+    console.log('vue Component init');
+
     const vm: Component = this
     // a uid
     vm._uid = uid++
@@ -66,6 +68,7 @@ export function initMixin (Vue: Class<Component>) {
       measure(`vue ${vm._name} init`, startTag, endTag)
     }
 
+    // learn.render.1 vm.$mount
     if (vm.$options.el) {
       vm.$mount(vm.$options.el)
     }

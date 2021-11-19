@@ -3518,6 +3518,7 @@
 
   /*  */
 
+  // learn.render initRender
   function initRender (vm) {
     vm._vnode = null; // the root of the child tree
     vm._staticTrees = null; // v-once cached trees
@@ -3560,6 +3561,7 @@
       return nextTick(fn, this)
     };
 
+    // learn.render.4 _render
     Vue.prototype._render = function () {
       var vm = this;
       var ref = vm.$options;
@@ -3962,6 +3964,7 @@
   }
 
   function lifecycleMixin (Vue) {
+    // learn.render.5 _update
     Vue.prototype._update = function (vnode, hydrating) {
       var vm = this;
       var prevEl = vm.$el;
@@ -4044,6 +4047,7 @@
     };
   }
 
+  // learn.render.2 mountComponent
   function mountComponent (
     vm,
     el,
@@ -4093,6 +4097,7 @@
       };
     } else {
       updateComponent = function () {
+        // learn.render.3.2 updateComponent
         vm._update(vm._render(), hydrating);
       };
     }
@@ -4510,6 +4515,7 @@
     var value;
     var vm = this.vm;
     try {
+      // learn.render.3 updateComponent
       value = this.getter.call(vm, vm);
     } catch (e) {
       if (this.user) {
@@ -4998,6 +5004,8 @@
   function initMixin (Vue) {
     // Learn.1 VUE初始化
     Vue.prototype._init = function (options) {
+      console.log('vue Component init');
+
       var vm = this;
       // a uid
       vm._uid = uid$2++;
@@ -5047,6 +5055,7 @@
         measure(("vue " + (vm._name) + " init"), startTag, endTag);
       }
 
+      // learn.render.1 vm.$mount
       if (vm.$options.el) {
         vm.$mount(vm.$options.el);
       }

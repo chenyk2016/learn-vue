@@ -56,6 +56,7 @@ export function initLifecycle (vm: Component) {
 }
 
 export function lifecycleMixin (Vue: Class<Component>) {
+  // learn.render.5 _update
   Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
     const vm: Component = this
     const prevEl = vm.$el
@@ -138,6 +139,7 @@ export function lifecycleMixin (Vue: Class<Component>) {
   }
 }
 
+// learn.render.2 mountComponent
 export function mountComponent (
   vm: Component,
   el: ?Element,
@@ -187,6 +189,7 @@ export function mountComponent (
     }
   } else {
     updateComponent = () => {
+      // learn.render.3.2 updateComponent
       vm._update(vm._render(), hydrating)
     }
   }

@@ -104,6 +104,7 @@ export default class Watcher {
     let value
     const vm = this.vm
     try {
+      // learn.render.3 updateComponent
       value = this.getter.call(vm, vm)
     } catch (e) {
       if (this.user) {
